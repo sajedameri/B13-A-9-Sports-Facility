@@ -1,6 +1,6 @@
 export default function PopularSports() {
   return (
-    <section className="py-16 bg-black">
+    <section className="py-16 ">
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold">Popular Sports</h2>
         <p className="text-gray-500 mt-2">

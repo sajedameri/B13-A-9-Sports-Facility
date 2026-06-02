@@ -62,20 +62,20 @@ const Nabver = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link href="/">Home</Link>
+              <Link href={"/"}>Home</Link>
             </li>
             <li>
-              <Link href="/allfacilities">All Facilities</Link>
+              <Link href={"/all-facilities"}>All Facilities</Link>
             </li>
             <li>
-              <Link href="/mybookings">My Bookings </Link>
+              <Link href={"/my-bookings"}>My Bookings </Link>
             </li>
             <li>
-              <Link href="/addfacility">Add Facility</Link>
+              <Link href={"/add-facility"}>Add Facility</Link>
             </li>
 
             <li>
-              <Link href="/managemyfacilities">Manage My Facilities</Link>
+              <Link href={"/manage-my-facilities"}>Manage My Facilities</Link>
             </li>
           </ul>
         </div>
@@ -90,14 +90,14 @@ const Nabver = () => {
               className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
             >
               <li>
-                <Link href="/mybookings">My Bookings </Link>
+                <Link href={"/my-bookings"}>My Bookings </Link>
               </li>
               <li>
-                <Link href="/addfacility">Add Facility</Link>
+                <Link href={"/add-facility"}>Add Facility</Link>
               </li>
 
               <li>
-                <Link href="/managemyfacilities">Manage My Facilities</Link>
+                <Link href={"/manage-my-facilities"}>Manage My Facilities</Link>
               </li>
               <a className="btn">Logout</a>
             </ul>
