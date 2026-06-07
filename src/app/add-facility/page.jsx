@@ -1,19 +1,36 @@
-"use clint"
+"use client";
 import { FieldError, Input, Label, TextField, Select, Button, ListBox, TextArea, Card, } from '@heroui/react';
 import React from 'react';
 
 const AddFacilityPage = () => {
+  const onSubmit = async(e)=>{
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const facility = Object.fromEntries(formData.entries());
+    // console.log(facility)
+    const res= await fetch('http://localhost:5000/facility',{
+      method:'post',
+      headers:{
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(facility)
+    })
+
+    const data = await res.json()
+
+    console.log(data)
+  }
   return (
     <div className='p-5 max-w-7xl mx-auto'>
-      <h1 className='text-2xl font-bold  '>Add Facility</h1>
+      <h1 className='text-2xl font-bold py-5 '>Add Facility</h1>
   <Card>
-     <form
-            className="p-10 space-y-8"
+     <form onSubmit={onSubmit}
+            className="p-10 space-y-8 w-3xl"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Destination Name */}
               <div className="md:col-span-2">
-                <TextField name="destinationName" isRequired>
+                <TextField name="FacilityName" isRequired>
                   <Label>Facility Name</Label>
                   <Input placeholder="Bali Paradise" className="rounded-2xl" />
                   <FieldError />
