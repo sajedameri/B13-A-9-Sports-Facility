@@ -17,6 +17,7 @@ import { BiEdit } from "react-icons/bi";
 
 export function EditModal({facility}) {
    const {
+    _id,
     facilityName,
     description,
     capacity,
@@ -31,17 +32,32 @@ export function EditModal({facility}) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const facility = Object.fromEntries(formData.entries());
+       const res= await fetch(`http://localhost:5000/facility/${_id}`,{
+      method:'PATCH',
+      headers:{
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(facility)
+    })
+if (res.ok){
+ const data = await res.json()
+
+    console.log(data)
+}
+else{
+  console.log(`error`)
+}
    
   };
   return (
     <Modal>
-      <div className="flex justify-end">
+   
         <Button variant="outline" className="rounded-none my-3">
         
           <BiEdit />
           Edit
         </Button>
-      </div>
+    
       <Modal.Backdrop>
         <Modal.Container placement="auto">
           <Modal.Dialog className="sm:max-w-xl">
@@ -57,7 +73,7 @@ export function EditModal({facility}) {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Destination Name */}
                     <div className="md:col-span-2">
-                      <TextField defaultValue={facilityName} name="FacilityName" isRequired>
+                      <TextField defaultValue={facilityName} name="facilityName" isRequired>
                         <Label>Facility Name</Label>
                         <Input
                           placeholder="Bali Paradise"
@@ -78,7 +94,7 @@ export function EditModal({facility}) {
                     {/* Category - Updated Select Component */}
                     <div>
                       <Select defaultValue={facilityType}
-                        name="Facility Type"
+                        name="facilityType"
                         isRequired
                         className="w-full"
                         placeholder={facilityType}
@@ -125,7 +141,7 @@ export function EditModal({facility}) {
                     </div>
 
                     {/* Duration */}
-                    <TextField defaultValue={availableTimeSlots} name="duration" isRequired>
+                    <TextField defaultValue={availableTimeSlots} name="availableTimeSlots" isRequired>
                       <Label>Available Time Slots</Label>
                       <Input
                         placeholder="7 Days / 6 Nights"
@@ -134,18 +150,18 @@ export function EditModal({facility}) {
                       <FieldError />
                     </TextField>
 
-                    {/* Departure Date */}
+                    {/* Departure Date
                     <div className="md:col-span-2">
                       <TextField name="departureDate" type="date" isRequired>
                         <Label>Departure Date</Label>
                         <Input type="date" className="rounded-2xl" />
                         <FieldError />
                       </TextField>
-                    </div>
+                    </div> */}
 
                     {/* Image URL - Removed preview */}
                     <div className="md:col-span-2">
-                      <TextField defaultValue = {image} name="imageUrl" isRequired>
+                      <TextField defaultValue = {image} name="image" isRequired>
                         <Label>Image URL</Label>
                         <Input
                           type="url"
@@ -156,7 +172,7 @@ export function EditModal({facility}) {
                       </TextField>
                     </div>
                     <div>
-                      <TextField name="capacity" isRequired>
+                      <TextField  defaultValue = {capacity} name="capacity" isRequired>
                         <Label>Capacity</Label>
                         <Input
                           type="number"
@@ -169,7 +185,7 @@ export function EditModal({facility}) {
 
                     {/* Description */}
                     <div className="md:col-span-2">
-                      <TextField name="description" isRequired>
+                      <TextField  defaultValue = {description} name="description" isRequired>
                         <Label>Description</Label>
                         <TextArea
                           placeholder="Describe the travel experience..."
@@ -181,23 +197,15 @@ export function EditModal({facility}) {
                   </div>
 
                   {/* Buttons */}
-
-                  <Button
-                    type="submit"
-                    variant="outline"
-                    className=" rounded-none w-full bg-cyan-500 text-white"
-                  >
-                    Add Facility
-                  </Button>
+  <Modal.Footer>
+            
+              <Button type="submit">Save</Button>
+            </Modal.Footer>
+                
                 </form>
               </Surface>
             </Modal.Body>
-            <Modal.Footer>
-              <Button slot="close" variant="secondary">
-                Cancel
-              </Button>
-              <Button slot="close">Send Message</Button>
-            </Modal.Footer>
+          
           </Modal.Dialog>
         </Modal.Container>
       </Modal.Backdrop>
