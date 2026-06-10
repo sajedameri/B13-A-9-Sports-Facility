@@ -81,6 +81,7 @@ const Nabver = () => {
         </div>
         <div className="navbar-end">
           <a className="btn">Login</a>
+          <Link href={"/signup"}>SignUp</Link>
           <div className="dropdown dropdown-center">
             <div tabIndex={0} role="button" className="btn m-1">
               Menu ⬇️
