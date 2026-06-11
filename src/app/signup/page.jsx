@@ -1,6 +1,6 @@
 "use client"
 
-import { createAuthClient } from "better-auth/react";
+
 import { Card } from "@heroui/react";
 import React from "react";
 import {
@@ -12,7 +12,9 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
 
 
 const signUpPage = () => {
@@ -113,15 +115,20 @@ const signUpPage = () => {
             <FieldError />
           </TextField>
           <div className="flex justify-center  gap-2">
+          <Link href={"/login"}>
             <Button type="submit" className={"w-full"}>
              
               Create Account
             </Button>
+          </Link>
            
           </div>
         </Form>
-        
+        <div>
+          <Button className={"w-full "}>Sing in With Google</Button>
+        </div>
       </Card>
+         <ToastContainer />
     </div>
   );
 };

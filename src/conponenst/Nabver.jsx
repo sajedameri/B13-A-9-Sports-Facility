@@ -1,8 +1,21 @@
+"use client"
+import { authClient } from "@/lib/auth-client";
+import { Avatar, Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Nabver = () => {
+  const handleSignOut = async()=>{
+    await authClient.signOut();
+  }
+   const { 
+        data: session, 
+       
+    } = authClient.useSession()
+    console.log(session) 
+    const user= session?.user
+
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm">
@@ -29,12 +42,7 @@ const Nabver = () => {
               tabIndex="-1"
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-              </li>
+            
               <li>
                 <Link href="/">Home</Link>
               </li>
@@ -79,10 +87,13 @@ const Nabver = () => {
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Login</a>
-          <Link href={"/signup"}>SignUp</Link>
-          <div className="dropdown dropdown-center">
+     { user? <>
+     <li>   <Avatar>
+        <Avatar.Image alt="John Doe" src={user?.image}/>
+        <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
+      </Avatar></li>
+     
+    <li>  <div className="dropdown dropdown-center">
             <div tabIndex={0} role="button" className="btn m-1">
               Menu ⬇️
             </div>
@@ -100,10 +111,16 @@ const Nabver = () => {
               <li>
                 <Link href={"/manage-my-facilities"}>Manage My Facilities</Link>
               </li>
-              <a className="btn">Logout</a>
+            <li><Button onClick={ handleSignOut} variant="danger" className="rounded-none ml-2">Logout</Button></li>
             </ul>
-          </div>
+          </div></li>
+     </>:<>
+      <div className="navbar-end gap-3">
+          <Link href={"/login"}>Login</Link>
+          <Link href={"/signup"}>SignUp</Link>
+        
         </div>
+       </>}
       </div>
     </div>
   );
