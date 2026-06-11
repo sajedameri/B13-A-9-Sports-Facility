@@ -15,6 +15,7 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { FcGoogle } from "react-icons/fc";
 
 
 const signUpPage = () => {
@@ -34,6 +35,7 @@ const signUpPage = () => {
 
     })
     console.log({data,error})
+
     
     if (error) {
       toast.error(error.message);
@@ -43,10 +45,15 @@ const signUpPage = () => {
       toast.success("Signup successful!");
        window.location.href="/login"
     }
+  };
+  const handleGoogleSignin =async()=>{
+ const data = await authClient.signIn.social({
+    provider: "google",
+  });
   }
   return (
     <div className="max-w-7xl mx-auto my-10">
-      <h1 className="text-2xl text-center  mb-4">Create Account</h1>
+      <h1 className="text-2xl text-center font-bold  mb-4">Create Account</h1>
       <Card className="border rounded-none">
         <Form onSubmit={onSubmit} className
         ="flex w-96 flex-col gap-4" >
@@ -116,7 +123,7 @@ const signUpPage = () => {
           </TextField>
           <div className="flex justify-center  gap-2">
           <Link href={"/login"}>
-            <Button type="submit" className={"w-full"}>
+            <Button className={"w-full"} type="submit" >
              
               Create Account
             </Button>
@@ -124,8 +131,11 @@ const signUpPage = () => {
            
           </div>
         </Form>
+        <div className="text-center">
+          Or Sign Up Google
+        </div>
         <div>
-          <Button className={"w-full "}>Sing in With Google</Button>
+          <Button onClick={handleGoogleSignin} className={"w-full"}><FcGoogle />Sign In With Google</Button>
         </div>
       </Card>
          <ToastContainer />

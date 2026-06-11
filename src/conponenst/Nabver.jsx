@@ -89,7 +89,7 @@ const Nabver = () => {
         </div>
      { user? <>
      <li>   <Avatar>
-        <Avatar.Image alt="John Doe" src={user?.image}/>
+        <Avatar.Image referrerPolicy="no-referrer" alt="John Doe" src={user?.image}/>
         <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
       </Avatar></li>
      

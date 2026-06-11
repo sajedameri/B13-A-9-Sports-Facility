@@ -13,6 +13,7 @@ import {
 } from "@heroui/react";
 import { toast, ToastContainer } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
+import { FcGoogle } from "react-icons/fc";
 
 const loginPage = () => {
   const onSubmit = async (e) => {
@@ -37,9 +38,14 @@ const loginPage = () => {
       window.location.href = "/";
     }
   };
+    const handleGoogleSignin =async()=>{
+   const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   return (
     <div className="max-w-7xl mx-auto my-10">
-      <h1 className="text-2xl text-center  mb-4">Login</h1>
+      <h1 className="text-2xl font-bold text-center  mb-4">Login</h1>
       <Card className="border rounded-none">
         <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4">
           <TextField
@@ -88,6 +94,12 @@ const loginPage = () => {
             </Button>
           </div>
         </Form>
+        <div className="text-center">
+                  Or Sign Up With Google
+                </div>
+                <div>
+                  <Button onClick={handleGoogleSignin} className={"w-full"}><FcGoogle />Sign IN With Google</Button>
+                </div>
       </Card>
          <ToastContainer/>
     </div>
