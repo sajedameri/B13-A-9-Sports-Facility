@@ -50,7 +50,7 @@ const Nabver = () => {
                 <Link href="/allfacilities">All Facilities</Link>
               </li>
               <li>
-                <Link href="/mybookings">My Bookings </Link>
+                <Link href="/my-booking">My Bookings </Link>
               </li>
               <li>
                 <Link href="/addfacility">Add Facility</Link>

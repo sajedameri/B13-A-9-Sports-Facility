@@ -1,3 +1,4 @@
+import BookingCard from "@/conponenst/BookingCard";
 import DeletAlert from "@/conponenst/DeletAlert";
 import { EditModal } from "@/conponenst/EditModal";
 import { Button } from "@heroui/react";
@@ -40,7 +41,9 @@ const FacilityDetailPage = async ({ params }) => {
             height={500}
           />
         </div>
-        <div>
+      <div className="flex justify-between">
+
+         <div>
           <div className="mt-4">
             <div className="flex items-center gap-2">
               <LuMapPin />
@@ -62,6 +65,12 @@ const FacilityDetailPage = async ({ params }) => {
           <h2 className="text-2xl font-bold mt-10">Overview</h2>
           <p>{description}</p>
         </div>
+        <div>
+          <BookingCard facility ={facility } />
+        </div>
+      </div>
+       
+      
       </div>
     </div>
   );
