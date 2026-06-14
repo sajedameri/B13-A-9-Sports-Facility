@@ -76,7 +76,7 @@ const Nabver = () => {
               <Link href={"/all-facilities"}>All Facilities</Link>
             </li>
             <li>
-              <Link href={"/my-bookings"}>My Bookings </Link>
+              <Link href={"/my-booking"}>My Bookings </Link>
             </li>
             <li>
               <Link href={"/add-facility"}>Add Facility</Link>
@@ -102,7 +102,7 @@ const Nabver = () => {
               className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
             >
               <li>
-                <Link href={"/my-bookings"}>My Bookings </Link>
+                <Link href={"/my-booking"}>My Bookings </Link>
               </li>
               <li>
                 <Link href={"/add-facility"}>Add Facility</Link>

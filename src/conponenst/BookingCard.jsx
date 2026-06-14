@@ -1,8 +1,9 @@
 "use client"
 import { authClient } from '@/lib/auth-client';
 import { Button, Card, DateField, Label } from '@heroui/react';
+import Link from 'next/link';
 import React, { useState } from 'react';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 
 const BookingCard = ({facility }) => {
   const [bookingDate, setBookingDate]=useState(null);
@@ -27,6 +28,7 @@ const BookingCard = ({facility }) => {
           pricePerHour,
           image,
           location,
+          availableTimeSlots,
           bookingDate:new Date(bookingDate)
 
         };
@@ -64,8 +66,8 @@ const BookingCard = ({facility }) => {
   <div className="border p-2 w-full bg-gray-100">
   Total: {pricePerHour * Number(hours)}
 </div>
-    <Button onClick={handleBooking} className={"w-full rounded-none"}>Book now</Button>
-   
+    <Link href={"/my-booking"}><Button onClick={handleBooking} className={"w-full rounded-none"}>Book now</Button></Link>
+    <Toaster />
    </Card>
   );
 };
