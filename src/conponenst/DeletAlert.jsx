@@ -4,6 +4,7 @@ import { AlertDialog, Button } from '@heroui/react';
 
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const DeletAlert = ({facility}) => {
   const router = useRouter()
@@ -20,6 +21,7 @@ const handleDelete = async() =>{
   const data = await res.json();
   router.push('/all-facilities')
   console.log(data);
+  toast.success('Delete is Successfully !')
 
 };
   return (

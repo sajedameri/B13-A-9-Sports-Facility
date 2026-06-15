@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Bannar = () => {
@@ -20,7 +21,7 @@ const Bannar = () => {
               Easily explore and book sports facilities such as football,
               badminton, and tennis courts with a seamless booking experience.
             </p>
-            <button className="btn btn-primary">Explore Facilities </button>
+          <Link href={"/all-facilities"}>  <button className="btn btn-primary">Explore Facilities </button></Link>
           </div>
         </div>
       </div>

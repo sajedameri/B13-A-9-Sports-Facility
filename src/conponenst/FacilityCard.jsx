@@ -21,7 +21,7 @@ const FacilityCard = ({ facility }) => {
     _id,
   } = facility;
   return <div>
-<Card>
+<Card className="">
  <Image
   className="h-50 w-auto"
   alt={facilityName}

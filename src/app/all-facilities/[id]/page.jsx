@@ -24,12 +24,13 @@ const FacilityDetailPage = async ({ params }) => {
     location,
   } = facility;
 
+
   return (
     <div className="max-w-7xl mx-auto my-20">
       <h1 className="text-2xl font-bold py-10"> Facility Details</h1>
      <div className="flex items-center gap-4 justify-end">
-       <EditModal facility={facility} />
-       <DeletAlert facility={facility} />
+<EditModal facility={facility} />
+<DeletAlert facility={facility} />
      </div>
       <div>
         <div>

@@ -14,6 +14,7 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
 
 const loginPage = () => {
   const onSubmit = async (e) => {
@@ -95,6 +96,7 @@ const loginPage = () => {
           </div>
         </Form>
         <div className="text-center">
+          <Link href={"/signup"}><Button className={"w-full"}>Register Link</Button></Link>
                   Or Sign Up With Google
                 </div>
                 <div>

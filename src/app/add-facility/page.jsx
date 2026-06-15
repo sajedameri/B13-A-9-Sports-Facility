@@ -15,6 +15,10 @@ const AddFacilityPage = () => {
       },
       body: JSON.stringify(facility)
     })
+    const newfacilites = {
+  ...facility,
+  email: user?.email,
+};
 
     const data = await res.json()
 
@@ -31,7 +35,7 @@ const AddFacilityPage = () => {
               {/* Destination Name */}
               <div className="md:col-span-2">
                 <TextField name="FacilityName" isRequired>
-                  <Label>Facility Name</Label>
+                  <Label>facility Name</Label>
                   <Input placeholder="Bali Paradise" className="rounded-2xl" />
                   <FieldError />
                 </TextField>
@@ -47,12 +51,12 @@ const AddFacilityPage = () => {
               {/* Category - Updated Select Component */}
               <div>
                 <Select
-                  name="Facility Type"
+                  name="facility Type"
                   isRequired
                   className="w-full"
                   placeholder="Select category"
                 >
-                  <Label>Facility Type</Label>
+                  <Label>facility Type</Label>
                   <Select.Trigger className="rounded-2xl">
                     <Select.Value />
                     <Select.Indicator />

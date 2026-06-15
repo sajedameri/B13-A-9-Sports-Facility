@@ -1,4 +1,6 @@
 import { BookingCancelAlert } from "@/conponenst/BookingCancelAlert";
+import DeletAlert from "@/conponenst/DeletAlert";
+import { EditModal } from "@/conponenst/EditModal";
 import { auth } from "@/lib/auth";
 import { TrashBin } from "@gravity-ui/icons";
 import { Button } from "@heroui/react";
@@ -6,7 +8,7 @@ import { headers } from "next/headers";
 import Image from "next/image";
 import { IoMdTimer } from "react-icons/io";
 
-const MyBookingPage = async () => {
+const ManegeFacility = async () => {
   const session = await auth.api.getSession({
     headers: await headers(), // you need to pass the headers object.
   });
@@ -16,7 +18,8 @@ const MyBookingPage = async () => {
 
   return (
     <div className="max-w-7xl mx-auto my-10 lg:my-20">
-      <h1 className="text-3xl font-bold mb-5">My Bookings Page</h1>
+      <h1 className='text-3xl font-bold'>Manege My Facilities</h1>
+      
       <div className="space-y-5">
         {bookings.map((booking) => (
           <div key={booking._id} className="flex gap-5 border p-5 min-w-3xl">
@@ -30,12 +33,18 @@ const MyBookingPage = async () => {
             <div>
               <h2 className="text-xl font-bold">Name :{booking.facilityName}</h2>
               <h2>TimeSlot :{booking.availableTimeSlots}</h2>
-              <p>DAte:{new Date(booking.bookingDate).toLocaleDateString()}</p>
+              <p>Date :{new Date(booking.bookingDate).toLocaleDateString()}</p>
               <p>Id :{booking._id}</p>
               <p className="text-3xl text-cyan-700 font-bold">
                 ${booking.pricePerHour}
               </p>
-              <BookingCancelAlert bookingId ={booking._id}/>
+       
+
+<div className="flex items-center gap-3 mb-2">
+  <EditModal facility={booking} />
+<DeletAlert facility={booking} />
+</div>
+
              
             </div>
           </div>
@@ -45,4 +54,4 @@ const MyBookingPage = async () => {
   );
 };
 
-export default MyBookingPage;
+export default ManegeFacility;
