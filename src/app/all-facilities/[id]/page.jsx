@@ -10,7 +10,11 @@ import { LuMapPin } from "react-icons/lu";
 const FacilityDetailPage = async ({ params }) => {
   const { id } = await params;
   console.log(id);
-  const res = await fetch(`http://localhost:5000/facility/${id}`);
+  const res = await fetch(`http://localhost:5000/facility/${id}`,{
+    headers:{
+      authorization:"logged in"
+    }
+  });
   const facility = await res.json();
   console.log(facility);
   const {

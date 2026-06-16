@@ -10,26 +10,38 @@ const SearchPage = () => {
   const [sport, setSport] = useState("");
   console.log(search)
 
-  useEffect(() => {
-    fetch(
+ 
+   
+  
+const [debouncedSearch, setDebouncedSearch] = useState("");
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setDebouncedSearch(search);
+  }, 500);
+
+  return () => clearTimeout(timer);
+}, [search]);
+
+useEffect(() => {
+ fetch(
       `http://localhost:5000/facility?search=${search}&sport=${sport}`
     )
       .then((res) => res.json())
       .then((data) => setFacilities(data));
-  }, [search, sport]);
-
+}, [debouncedSearch, search, sport]);
   return (
     <div className="">
      
 
       <div className="my-5">
         <SearchField
-          value={search}
-          onChange={setSearch}
+         
         >
           <SearchField.Group>
             <SearchField.SearchIcon />
-            <SearchField.Input
+            <SearchField.Input  value={search}
+          onChange={e=>setSearch(e.target.value)}
               className="w-[280px]"
               placeholder="Search facility..."
             />
