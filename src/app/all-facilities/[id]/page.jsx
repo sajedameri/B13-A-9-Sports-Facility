@@ -37,54 +37,65 @@ const FacilityDetailPage = async ({ params }) => {
 
 
   return (
-    <div className="max-w-7xl mx-auto my-20">
-      <h1 className="text-2xl font-bold py-10"> Facility Details</h1>
-     <div className="flex items-center gap-4 justify-end">
-<EditModal facility={facility} />
-<DeletAlert facility={facility} />
-     </div>
-      <div>
-        <div>
-          <Image
-            className="h-100 w-full object-cover "
-            alt="facilityName"
-            src={image}
-            width={800}
-            height={500}
-          />
-        </div>
-      <div className="flex justify-between sm:grid-col-1 md:grid-cols-2">
+    <div className="max-w-7xl mx-auto my-10 lg:my-20 px-4">
+  <h1 className="text-2xl md:text-3xl font-bold py-6 md:py-10">
+    Facility Details
+  </h1>
 
-         <div>
-          <div className="mt-4">
-            <div className="flex items-center gap-2">
-              <LuMapPin />
-              <span>{location}</span>
-            </div>
-          </div>
+  {/* Edit & Delete Button */}
+  <div className="flex flex-col sm:flex-row items-center gap-4 justify-end mb-6">
+    <EditModal facility={facility} />
+    <DeletAlert facility={facility} />
+  </div>
 
-          <div>
-            <h2 className="text-xl font-bold ">{facilityName}</h2>
-          </div>
+  {/* Facility Image */}
+  <div>
+    <Image
+      className="w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] object-cover rounded-xl"
+      alt={facilityName}
+      src={image}
+      width={1200}
+      height={600}
+    />
+  </div>
 
-          <div className="flex items-center gap-2">
-            <FaRegCalendar />
-            <span>{availableTimeSlots}</span>
-          </div>
-          <div>
-            <h2 className="text-2xl font-bold">${pricePerHour}</h2>
-          </div>
-          <h2 className="text-2xl font-bold mt-10">Overview</h2>
-          <p>{description}</p>
-        </div>
-        <div className="">
-          <BookingCard facility ={facility } />
-        </div>
+  {/* Content Section */}
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-8">
+    {/* Left Side */}
+    <div>
+      <div className="flex items-center gap-2 text-gray-600">
+        <LuMapPin />
+        <span>{location}</span>
       </div>
-       
-      
+
+      <h2 className="text-2xl md:text-3xl font-bold mt-4">
+        {facilityName}
+      </h2>
+
+      <div className="flex items-center gap-2 mt-4 text-gray-600">
+        <FaRegCalendar />
+        <span>{availableTimeSlots}</span>
       </div>
+
+      <h2 className="text-2xl md:text-3xl font-bold mt-4">
+        ${pricePerHour}
+      </h2>
+
+      <h2 className="text-2xl font-bold mt-8">
+        Overview
+      </h2>
+
+      <p className="mt-4 text-gray-600 leading-7">
+        {description}
+      </p>
     </div>
+
+    {/* Right Side */}
+    <div className="w-full">
+      <BookingCard facility={facility} />
+    </div>
+  </div>
+</div>
   );
 };
 
