@@ -7,15 +7,19 @@ import React from 'react';
 import { toast } from 'react-toastify';
 
 const DeletAlert = ({facility}) => {
+    
   const router = useRouter()
-  console.log("facility:", facility);
+ 
   const{_id ,facilityName} = facility;
 const handleDelete = async() =>{
+    
+ const { data: tokenData } = await authClient.token();
   const res = await fetch(`http://localhost:5000/facility/${_id}`,{
 
     method:"DELETE",
    headers:{
-        'content-type' : 'application/json'
+        'content-type' : 'application/json',
+         authorization: `Bearer ${tokenData?.token}`,
       },
   });
   const data = await res.json();

@@ -1,18 +1,25 @@
 import BookingCard from "@/conponenst/BookingCard";
 import DeletAlert from "@/conponenst/DeletAlert";
 import { EditModal } from "@/conponenst/EditModal";
+import { auth } from "@/lib/auth";
 import { Button } from "@heroui/react";
+import { headers } from "next/headers";
 import Image from "next/image";
 import { BiEdit } from "react-icons/bi";
 import { FaRegCalendar } from "react-icons/fa6";
 import { LuMapPin } from "react-icons/lu";
 
 const FacilityDetailPage = async ({ params }) => {
+  const {token} = await auth.api.getToken({
+  headers:await headers()
+  })
+
+
   const { id } = await params;
-  console.log(id);
+  
   const res = await fetch(`http://localhost:5000/facility/${id}`,{
     headers:{
-      authorization:"logged in"
+      authorization:`bearer ${token}`
     }
   });
   const facility = await res.json();
@@ -39,14 +46,14 @@ const FacilityDetailPage = async ({ params }) => {
       <div>
         <div>
           <Image
-            className="h-100 w-full object-cover"
+            className="h-100 w-full object-cover "
             alt="facilityName"
             src={image}
             width={800}
             height={500}
           />
         </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between sm:grid-col-1 md:grid-cols-2">
 
          <div>
           <div className="mt-4">
@@ -70,7 +77,7 @@ const FacilityDetailPage = async ({ params }) => {
           <h2 className="text-2xl font-bold mt-10">Overview</h2>
           <p>{description}</p>
         </div>
-        <div>
+        <div className="">
           <BookingCard facility ={facility } />
         </div>
       </div>

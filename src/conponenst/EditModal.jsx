@@ -29,13 +29,15 @@ export function EditModal({facility}) {
     
   } = facility;
   const onSubmit = async (e) => {
+     const { data: tokenData } = await authClient.token();
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const facility = Object.fromEntries(formData.entries());
        const res= await fetch(`http://localhost:5000/facility/${_id}`,{
       method:'PATCH',
       headers:{
-        'content-type' : 'application/json'
+        'content-type' : 'application/json',
+          authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(facility)
     })

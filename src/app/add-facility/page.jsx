@@ -5,13 +5,15 @@ import React from 'react';
 const AddFacilityPage = () => {
   const onSubmit = async(e)=>{
     e.preventDefault()
+      const {data:tokenData} = await authClient.token()
     const formData = new FormData(e.currentTarget)
     const facility = Object.fromEntries(formData.entries());
     // console.log(facility)
     const res= await fetch('http://localhost:5000/facility',{
       method:'post',
       headers:{
-        'content-type' : 'application/json'
+        'content-type' : 'application/json',
+         authorization:`Bearer ${tokenData?.token}`
       },
       body: JSON.stringify(facility)
     })
@@ -25,11 +27,11 @@ const AddFacilityPage = () => {
     console.log(data)
   }
   return (
-    <div className='p-5 max-w-7xl mx-auto'>
+    <div className="p-4 sm:p-5 max-w-7xl mx-auto">
       <h1 className='text-2xl font-bold py-5 '>Add Facility</h1>
   <Card>
      <form onSubmit={onSubmit}
-            className="p-10 space-y-8 w-3xl"
+            className="p-4 sm:p-6 md:p-10 space-y-8 w-full max-w-3xl mx-auto"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Destination Name */}
