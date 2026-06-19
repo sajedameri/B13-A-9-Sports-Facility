@@ -2,17 +2,17 @@ import FacilityCard from "@/conponenst/FacilityCard";
 import { auth } from "@/lib/auth";
 
 import { Label, SearchField } from "@heroui/react";
-import { headers } from "next/headers";
+
 
 
 const AllFacilitiesPage = async () => {
-    const {token} = await auth.api.getToken({
-    headers:await headers()
-    })
-  const res = await fetch("http://localhost:5000/facility",{
-      headers:{
-      authorization:`Bearer ${token}`
-    }
+    // const {token} = await auth.api.getToken({
+    // headers:await headers()
+    // })
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/facility`,{
+    //   headers:{
+      
+    // }
   });
   const facilities = await res.json();
   

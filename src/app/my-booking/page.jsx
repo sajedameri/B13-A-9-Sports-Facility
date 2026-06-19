@@ -4,10 +4,10 @@ import { headers } from "next/headers";
 import Image from "next/image";
 
 const MyBookingPage = async () => {
-  const { token } = await auth.api.getToken({
+ 
+ const { token } = await auth.api.getToken({
     headers: await headers(),
   });
-
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -15,7 +15,7 @@ const MyBookingPage = async () => {
   const user = session?.user;
 
   const res = await fetch(
-    `http://localhost:5000/booking/${user?.id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/booking/${user?.id}`,
     {
       headers: {
         authorization: `Bearer ${token}`,
@@ -25,6 +25,7 @@ const MyBookingPage = async () => {
   );
 
   const bookings = await res.json();
+  console.log(bookings)
 
   return (
     <div className="max-w-7xl mx-auto px-4 my-10 lg:my-20">

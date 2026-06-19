@@ -13,18 +13,18 @@ const DeletAlert = ({facility}) => {
   const{_id ,facilityName} = facility;
 const handleDelete = async() =>{
     
- const { data: tokenData } = await authClient.token();
-  const res = await fetch(`http://localhost:5000/facility/${_id}`,{
+//  const { data: tokenData } = await authClient.token();
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/facility/${_id}`,{
 
     method:"DELETE",
    headers:{
-        'content-type' : 'application/json',
-         authorization: `Bearer ${tokenData?.token}`,
+        'content-type' : 'application/json'
+        //  authorization: `Bearer ${tokenData?.token}`,
       },
   });
   const data = await res.json();
   router.push('/all-facilities')
-  console.log(data);
+  
   toast.success('Delete is Successfully !')
 
 };

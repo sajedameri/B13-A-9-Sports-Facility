@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Envelope } from "@gravity-ui/icons";
 import {
   Button,
@@ -29,11 +30,12 @@ export function EditModal({facility}) {
     
   } = facility;
   const onSubmit = async (e) => {
+     e.preventDefault();
      const { data: tokenData } = await authClient.token();
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+   
+    const formData = new FormData(e.target);
     const facility = Object.fromEntries(formData.entries());
-       const res= await fetch(`http://localhost:5000/facility/${_id}`,{
+       const res= await fetch(`${process.env.NEXT_PUBLIC_API_URL}/facility/${_id}`,{
       method:'PATCH',
       headers:{
         'content-type' : 'application/json',

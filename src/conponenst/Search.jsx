@@ -25,7 +25,7 @@ useEffect(() => {
 
 useEffect(() => {
  fetch(
-      `http://localhost:5000/facility?search=${search}&sport=${sport}`
+      `${process.env.NEXT_PUBLIC_API_URL}/facility?search=${search}&sport=${sport}`
     )
       .then((res) => res.json())
       .then((data) => setFacilities(data));
